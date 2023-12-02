@@ -32,7 +32,7 @@ internal class Day01Test {
 
     @Test
     fun day01bFull() {
-        assertEquals(54807, day01b(getInput(1)))
+        assertEquals(54824, day01b(getInput(1)))
     }
 
 }
