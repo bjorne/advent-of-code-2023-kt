@@ -27,8 +27,6 @@ val symbolRegex = """([^\d\.])""".toRegex()
 
 private fun parseInput(input: String): Pair<List<Number>, List<Symbol>> {
     val schematic = input.split("\n")
-    val width = schematic[0].length
-    val height = schematic.size
     val numbers = schematic.flatMapIndexed { index, line ->
         numberRegex03.findAll(line).map {
             Number(Point(it.range.first, index), it.value.toInt())
