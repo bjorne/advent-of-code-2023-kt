@@ -1,5 +1,3 @@
-import java.lang.Integer.max
-
 data class Point(val x: Int, val y: Int) {
     val neigbors = sequence {
         yield(Point(x - 1, y - 1))
@@ -13,11 +11,7 @@ data class Point(val x: Int, val y: Int) {
     }
 }
 
-sealed interface Item {
-    val position: Point
-}
-
-data class Number(override val position: Point, val value: Int) : Item {
+data class Number(val position: Point, val value: Int) {
     val extent = sequence {
         val len = value.toString().length
         for (i in 0 until len) {
@@ -26,11 +20,10 @@ data class Number(override val position: Point, val value: Int) : Item {
     }
 }
 
-data class Symbol(override val position: Point, val value: Char) : Item
+data class Symbol(val position: Point, val value: Char)
 
 val numberRegex03 = """(\d+)""".toRegex()
-val itemRegex = """([^\d\.])""".toRegex()
-
+val symbolRegex = """([^\d\.])""".toRegex()
 
 private fun parseInput(input: String): Pair<List<Number>, List<Symbol>> {
     val schematic = input.split("\n")
@@ -42,7 +35,7 @@ private fun parseInput(input: String): Pair<List<Number>, List<Symbol>> {
         }
     }
     val symbols = schematic.flatMapIndexed { index, line ->
-        itemRegex.findAll(line).map {
+        symbolRegex.findAll(line).map {
             Symbol(Point(it.range.first, index), it.value.first().toChar())
         }
     }

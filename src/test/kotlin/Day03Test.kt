@@ -31,7 +31,7 @@ internal class Day03Test {
 
     @Test
     fun day03bFull() {
-        assertEquals(1, day03b(getInput(3)))
+        assertEquals(82824352, day03b(getInput(3)))
     }
 
 }
