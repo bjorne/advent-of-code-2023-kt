@@ -1,3 +1,5 @@
+package adventofcode.day02
+
 import java.lang.Integer.max
 
 val max = mapOf(

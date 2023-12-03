@@ -1,3 +1,4 @@
+package adventofcode.day01
 fun day01a(input: String): Int {
     return input.split("\n").map {
         val numbers = it.filter { it.isDigit() }

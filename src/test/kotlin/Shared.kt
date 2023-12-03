@@ -1,3 +1,4 @@
+package adventofcode.shared
 fun getInput(day: Int): String =
     Thread
         .currentThread()

@@ -1,15 +1,6 @@
-data class Point(val x: Int, val y: Int) {
-    val neigbors = sequence {
-        yield(Point(x - 1, y - 1))
-        yield(Point(x, y - 1))
-        yield(Point(x + 1, y - 1))
-        yield(Point(x - 1, y))
-        yield(Point(x + 1, y))
-        yield(Point(x - 1, y + 1))
-        yield(Point(x, y + 1))
-        yield(Point(x + 1, y + 1))
-    }
-}
+package adventofcode.day03
+
+import adventofcode.shared.Point
 
 data class Number(val position: Point, val value: Int) {
     val extent = sequence {
@@ -22,13 +13,13 @@ data class Number(val position: Point, val value: Int) {
 
 data class Symbol(val position: Point, val value: Char)
 
-val numberRegex03 = """(\d+)""".toRegex()
+val numberRegex = """(\d+)""".toRegex()
 val symbolRegex = """([^\d\.])""".toRegex()
 
 private fun parseInput(input: String): Pair<List<Number>, List<Symbol>> {
     val schematic = input.split("\n")
     val numbers = schematic.flatMapIndexed { index, line ->
-        numberRegex03.findAll(line).map {
+        numberRegex.findAll(line).map {
             Number(Point(it.range.first, index), it.value.toInt())
         }
     }

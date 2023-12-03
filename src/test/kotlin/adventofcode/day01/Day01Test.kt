@@ -1,3 +1,6 @@
+package adventofcode.day01
+
+import adventofcode.shared.getInput
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
