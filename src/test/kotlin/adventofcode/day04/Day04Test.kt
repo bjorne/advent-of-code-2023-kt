@@ -24,6 +24,12 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11""".trimMargin()
     }
 
     @Test
+    fun day04b2() {
+        assertEquals(30, day04b2(input))
+    }
+
+
+    @Test
     fun day04aFull() {
         assertEquals(23847, day04a(getInput(4)))
     }
