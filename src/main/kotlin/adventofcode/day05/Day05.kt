@@ -44,7 +44,6 @@ fun day05b(input: String): Long = input.split("\n\n").let { chunks ->
                     sourceRange.intersect(prevRange)!!.offset(offset)
 
                 }
-                .ifEmpty { listOf(prevRange) }
         }
         val unmapped = mappings.fold(previousRanges) { acc, (_, sourceRange) ->
             acc.flatMap { it.difference(sourceRange) }.unionOverlapping()
