@@ -57,7 +57,7 @@ humidity-to-location map:
 
     @Test
     fun day05bFull() {
-        assertEquals(1, day05b(getInput(5)))
+        assertEquals(104070862, day05b(getInput(5)))
     }
 
 }

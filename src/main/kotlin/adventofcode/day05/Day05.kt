@@ -11,6 +11,13 @@ fun LongRange.union(other: LongRange): LongRange? =
     if (overlaps(other)) minOf(this.first, other.first)..maxOf(this.last, other.last) else null
 
 fun LongRange.offset(offset: Long): LongRange = (this.first + offset)..(this.last + offset)
+fun LongRange.difference(other: LongRange): List<LongRange> {
+    val intersection = this.intersect(other)
+    return if (intersection == null) listOf(this) else listOf(
+        this.first until intersection.first,
+        intersection.last + 1..this.last
+    ).filter { !it.isEmpty() }
+}
 
 fun List<LongRange>.unionOverlapping(): List<LongRange> = this
     .sortedBy { it.first }
@@ -55,18 +62,18 @@ fun day05b(input: String): Long = input.split("\n\n").let { chunks ->
             val (toStart, fromStart, len) = line.split(" ").map(String::toLong)
             Pair(toStart - fromStart, fromStart until fromStart + len)
         }
-        previousRanges.flatMap { prevRange ->
+        val mapped = previousRanges.flatMap { prevRange ->
             mappings
                 .filter { (_, sourceRange) -> sourceRange.overlaps(prevRange) }
-                .flatMap { (offset, sourceRange) ->
-                    listOf(
-                        prevRange.first until sourceRange.first,
-                        sourceRange.intersect(prevRange)!!.offset(offset),
-                        (sourceRange.last + 1)..prevRange.last
-                    ).filter { !it.isEmpty() }
+                .map { (offset, sourceRange) ->
+                    sourceRange.intersect(prevRange)!!.offset(offset)
+
                 }
                 .ifEmpty { listOf(prevRange) }
-                .unionOverlapping()
         }
-    }.minOf { it.first }
-}
+        val unmapped = mappings.fold(previousRanges) { acc, (_, sourceRange) ->
+            acc.flatMap { it.difference(sourceRange) }.unionOverlapping()
+        }
+        (mapped + unmapped).unionOverlapping()
+    }
+}.minOf { it.first }
