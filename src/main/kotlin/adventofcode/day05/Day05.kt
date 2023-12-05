@@ -3,7 +3,6 @@ package adventofcode.day05
 import adventofcode.shared.LongRangeExtensions.difference
 import adventofcode.shared.LongRangeExtensions.intersect
 import adventofcode.shared.LongRangeExtensions.offset
-import adventofcode.shared.LongRangeExtensions.overlaps
 import adventofcode.shared.LongRangeExtensions.unionOverlapping
 
 fun day05a(input: String): Long = input.split("\n\n").let { chunks ->
@@ -38,12 +37,9 @@ fun day05b(input: String): Long = input.split("\n\n").let { chunks ->
             Pair(toStart - fromStart, fromStart until fromStart + len)
         }
         val mapped = previousRanges.flatMap { prevRange ->
-            mappings
-                .filter { (_, sourceRange) -> sourceRange.overlaps(prevRange) }
-                .map { (offset, sourceRange) ->
-                    sourceRange.intersect(prevRange)!!.offset(offset)
-
-                }
+            mappings.mapNotNull { (offset, sourceRange) ->
+                sourceRange.intersect(prevRange)?.offset(offset)
+            }
         }
         val unmapped = mappings.fold(previousRanges) { acc, (_, sourceRange) ->
             acc.flatMap { it.difference(sourceRange) }.unionOverlapping()
