@@ -1,9 +1,8 @@
-package adventofcode.day01
+package adventofcode
 
 import adventofcode.shared.getInput
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class Day01Test {
 
@@ -11,9 +10,10 @@ internal class Day01Test {
                 |pqr3stu8vwx
                 |a1b2c3d4e5f
                 |treb7uchet""".trimMargin()
+
     @Test
-    fun day01a() {
-        assertEquals(142, day01a(input))
+    fun a() {
+        assertEquals(142, Day01.a(input))
     }
 
     val input2 = """two1nine
@@ -23,19 +23,20 @@ internal class Day01Test {
                     |4nineeightseven2
                     |zoneight234
                     |7pqrstsixteen""".trimMargin()
+
     @Test
-    fun day01b() {
-        assertEquals(281, day01b(input2))
+    fun b() {
+        assertEquals(281, Day01.b(input2))
     }
 
     @Test
-    fun day01aFull() {
-        assertEquals(55386, day01a(getInput(1)))
+    fun aFull() {
+        assertEquals(55386, Day01.a(getInput(1)))
     }
 
     @Test
-    fun day01bFull() {
-        assertEquals(54824, day01b(getInput(1)))
+    fun bFull() {
+        assertEquals(54824, Day01.b(getInput(1)))
     }
 
 }

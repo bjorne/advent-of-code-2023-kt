@@ -1,9 +1,8 @@
-package adventofcode.day03
+package adventofcode
 
 import adventofcode.shared.getInput
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class Day03Test {
 
@@ -17,24 +16,25 @@ internal class Day03Test {
                   |......755.
                   |...${'$'}.*....
                   |.664.598..""".trimMargin()
+
     @Test
-    fun day03a() {
-        assertEquals(4361, day03a(input))
+    fun a() {
+        assertEquals(4361, Day03.a(input))
     }
 
     @Test
-    fun day03b() {
-        assertEquals(16345 + 451490, day03b(input))
+    fun b() {
+        assertEquals(16345 + 451490, Day03.b(input))
     }
 
     @Test
-    fun day03aFull() {
-        assertEquals(556057, day03a(getInput(3)))
+    fun aFull() {
+        assertEquals(556057, Day03.a(getInput(3)))
     }
 
     @Test
-    fun day03bFull() {
-        assertEquals(82824352, day03b(getInput(3)))
+    fun bFull() {
+        assertEquals(82824352, Day03.b(getInput(3)))
     }
 
 }

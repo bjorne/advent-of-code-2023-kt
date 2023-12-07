@@ -1,6 +1,5 @@
-package adventofcode.shared.adventofcode.day07
+package adventofcode
 
-import adventofcode.day07.Day07
 import adventofcode.shared.getInput
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -14,22 +13,22 @@ internal class Day07Test {
                   |QQQJA 483""".trimMargin()
 
     @Test
-    fun day07a() {
+    fun a() {
         assertEquals(765 * 1 + 220 * 2 + 28 * 3 + 684 * 4 + 483 * 5, Day07.a(input))
     }
 
     @Test
-    fun day07b() {
+    fun b() {
         assertEquals(5905, Day07.b(input))
     }
 
     @Test
-    fun day07aFull() {
+    fun aFull() {
         assertEquals(250058342, Day07.a(getInput(7)))
     }
 
     @Test
-    fun day07bFull() {
+    fun bFull() {
         assertEquals(250506580, Day07.b(getInput(7)))
     }
 

@@ -1,4 +1,4 @@
-package adventofcode.day05
+package adventofcode
 
 import adventofcode.shared.getInput
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -41,23 +41,23 @@ humidity-to-location map:
 56 93 4""".trimMargin()
 
     @Test
-    fun day05a() {
-        assertEquals(35, day05a(input))
+    fun a() {
+        assertEquals(35, Day05.a(input))
     }
 
     @Test
-    fun day05b() {
-        assertEquals(46, day05b(input))
+    fun b() {
+        assertEquals(46, Day05.b(input))
     }
 
     @Test
-    fun day05aFull() {
-        assertEquals(324724204, day05a(getInput(5)))
+    fun aFull() {
+        assertEquals(324724204, Day05.a(getInput(5)))
     }
 
     @Test
-    fun day05bFull() {
-        assertEquals(104070862, day05b(getInput(5)))
+    fun bFull() {
+        assertEquals(104070862, Day05.b(getInput(5)))
     }
 
 }
