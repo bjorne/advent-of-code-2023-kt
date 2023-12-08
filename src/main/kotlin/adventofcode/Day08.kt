@@ -41,14 +41,50 @@ object Day08 {
 
     private val endRegex = "..Z".toRegex()
 
+    private fun gcd(a: Long, b: Long): Long {
+        var a = a
+        var b = b
+        while (b > 0) {
+            val temp = b
+            b = a % b // % is remainder
+            a = temp
+        }
+        return a
+    }
+
+    private fun gcd(input: List<Long>): Long {
+        var result = input[0]
+        for (i in 1 until input.size) result = gcd(result, input[i])
+        return result
+    }
+
+    private fun lcm(a: Long, b: Long): Long {
+        return a * (b / gcd(a, b))
+    }
+
+    private fun lcm(input: List<Long>): Long {
+        var result = input[0]
+        for (i in 1 until input.size) result = lcm(result, input[i])
+        return result
+    }
+
     fun b(input: String): Long {
         val (turns, map) = parseInput(input)
 
-        val cache = mutableMapOf<Pair<Long, String>, Pair<Long, String>>()
+        val iterations = map.keys.filter { "..A".toRegex().matches(it) }
+            .map { findLength(turns, map, it, "..Z".toRegex(), 0).first }
+        return lcm(iterations)
+    }
+
+    // takes some time but works
+    fun bBrute(input: String): Long {
+        val (turns, map) = parseInput(input)
+
         val (iter, pos) = map.keys.filter { "..A".toRegex().matches(it) }
             .map { findLength(turns, map, it, "..Z".toRegex(), 0) }.unzip()
         val iterations = iter.toMutableList()
         val positions = pos.toMutableList()
+        val cache = mutableMapOf<Pair<Long, String>, Pair<Long, String>>()
 
         while (iterations.distinct().size > 1) {
             val maxIterations = iterations.max()!!

@@ -46,13 +46,22 @@ XXX = (XXX, XXX)""".trimMargin()
     }
 
     @Test
+    fun bBrute() {
+        assertEquals(6, Day08.bBrute(input3))
+    }
+
+    @Test
     fun aFull() {
         assertEquals(14257, Day08.a(getInput(8)))
     }
 
     @Test
     fun bFull() {
-        // assertEquals(16187743689077, Day08.b(getInput(8)))
+        assertEquals(16187743689077, Day08.b(getInput(8)))
     }
 
+    @Test
+    fun bBruteFull() {
+        // assertEquals(16187743689077, Day08.bBrute(getInput(8)))
+    }
 }
