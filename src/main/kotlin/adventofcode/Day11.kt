@@ -17,8 +17,7 @@ object Day11 {
         val expandingCols = grid.xRange.filter { x ->
             grid.yRange.all { y -> grid[Point(x, y)] == '.' }
         }
-        val expanded = grid.points.filter { it.value == '#' }.map { pp ->
-            val p = pp.key
+        val expanded = grid.points.filter { it.value == '#' }.map { (p, _) ->
             Point(
                 p.x + (expansionFactor - 1) * expandingCols.count { it < p.x },
                 p.y + (expansionFactor - 1) * expandingRows.count { it < p.y })
