@@ -48,8 +48,8 @@ data class Point(val x: Int, val y: Int) {
 
     companion object Constants {
         val origin = Point(0, 0)
-        val up = Point(0, -1)
-        val down = Point(0, 1)
+        val up = Point(0, 1)
+        val down = Point(0, -1)
         val left = Point(-1, 0)
         val right = Point(1, 0)
     }
