@@ -33,7 +33,7 @@ object Day11 {
                 if (k in pairs) {
                     continue
                 }
-                pairs[k] = expanded[i].manhattanDistance(expanded[j]).toLong()
+                pairs[k] = expanded[i].manhattanDistance(expanded[j])
             }
         }
         return pairs.values.sum()

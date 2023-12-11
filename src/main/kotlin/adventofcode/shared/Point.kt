@@ -2,8 +2,10 @@ package adventofcode.shared
 
 import kotlin.math.absoluteValue
 
-data class Point(val x: Int, val y: Int) {
-    val neigbors = sequence {
+data class Point(val x: Long, val y: Long) {
+    constructor(x: Int, y: Int) : this(x.toLong(), y.toLong())
+
+    val neighbors = sequence {
         yield(Point(x - 1, y - 1))
         yield(Point(x, y - 1))
         yield(Point(x + 1, y - 1))
@@ -28,7 +30,7 @@ data class Point(val x: Int, val y: Int) {
         while (ix != other.x || iy != other.y) {
             val xDiff = (other.x - ix).absoluteValue
             val yDiff = (other.y - iy).absoluteValue
-            if (xDiffTotal == 0 || xDiff * yDiffTotal < yDiff * xDiffTotal) {
+            if (xDiffTotal == 0L || xDiff * yDiffTotal < yDiff * xDiffTotal) {
                 iy += if (iy < other.y) 1 else -1
             } else {
                 ix += if (ix < other.x) 1 else -1

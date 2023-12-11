@@ -38,7 +38,7 @@ object Day10 {
             i++
             val c = grid[current]
             val next = when (c) {
-                'S' -> current.neigbors.find { neighbor ->
+                'S' -> current.neighbors.find { neighbor ->
                     grid.points.containsKey(neighbor) && connects(neighbor to grid[neighbor]!!).contains(current)
                 }!!
 
@@ -63,8 +63,8 @@ object Day10 {
 
     private fun isLeakagePoint(grid: SparseGrid<Char>, o: Point, p: Point): Boolean {
         val c = grid[p]
-        return c in corners && p.neigbors.any { n ->
-            n in o.neigbors && grid.points.containsKey(n) && grid[n] in corners && !connects(n to grid[n]!!).contains(
+        return c in corners && p.neighbors.any { n ->
+            n in o.neighbors && grid.points.containsKey(n) && grid[n] in corners && !connects(n to grid[n]!!).contains(
                 p
             )
         }
@@ -88,8 +88,8 @@ object Day10 {
             }
             if (current in explored || current in area) continue
             area.add(current)
-            if (current.neigbors.any { isLeakagePoint(grid, current, it) }) hasLeak = true
-            stack.addAll(current.neigbors.filter { grid.bounds(it) && grid[it] == null && it !in area && it !in explored })
+            if (current.neighbors.any { isLeakagePoint(grid, current, it) }) hasLeak = true
+            stack.addAll(current.neighbors.filter { grid.bounds(it) && grid[it] == null && it !in area && it !in explored })
         }
         // println(SparseGrid(grid.points + area.map { it to '@' }.toMap()).draw())
         return Area(area, isValid, hasLeak)

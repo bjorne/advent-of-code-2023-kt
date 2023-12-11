@@ -36,7 +36,7 @@ object Day03 {
         val (numbers, symbols) = parseInput(input)
         return numbers.filter { number ->
             symbols.any { symbol ->
-                number.extent.flatMap { it.neigbors }.any { it == symbol.position }
+                number.extent.flatMap { it.neighbors }.any { it == symbol.position }
             }
         }.map { it.value }.sum()
     }
@@ -46,7 +46,7 @@ object Day03 {
         val (numbers, symbols) = parseInput(input)
         return symbols.filter { it.value == '*' }.map { symbol ->
             val adjacent = numbers.filter { number ->
-                number.extent.flatMap { it.neigbors }.any { it == symbol.position }
+                number.extent.flatMap { it.neighbors }.any { it == symbol.position }
             }
             val gearRatio = adjacent.map { it.value }.reduce(Int::times)
             if (adjacent.size == 2) gearRatio else 0
