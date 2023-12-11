@@ -2,7 +2,6 @@ package adventofcode
 
 import adventofcode.shared.Point
 import adventofcode.shared.SparseGrid
-import kotlin.math.absoluteValue
 
 object Day11 {
     private fun solve(input: String, expansionFactor: Int): Long {
@@ -34,8 +33,7 @@ object Day11 {
                 if (k in pairs) {
                     continue
                 }
-                pairs[k] =
-                    (expanded[i].x - expanded[j].x).toLong().absoluteValue + (expanded[i].y - expanded[j].y).toLong().absoluteValue
+                pairs[k] = expanded[i].manhattanDistance(expanded[j]).toLong()
             }
         }
         return pairs.values.sum()

@@ -14,6 +14,8 @@ data class Point(val x: Int, val y: Int) {
         yield(Point(x + 1, y + 1))
     }
 
+    fun manhattanDistance(other: Point) = (x - other.x).absoluteValue + (y - other.y).absoluteValue
+
     operator fun plus(other: Point) = Point(x + other.x, y + other.y)
     operator fun minus(other: Point) = Point(x - other.x, y - other.y)
 
